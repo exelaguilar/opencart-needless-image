@@ -67,26 +67,26 @@ class ControllerModuleNeedlessimage extends Controller {
 		
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_home'),
-			'href'      => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+       		'href'      => HTTPS_SERVER . 'index.php?route=common/home&token=' . $this->session->data['token'],
 			'separator' => false
 		);
 		
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('text_module'),
-			'href'      => $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL'),
+       		'href'      => HTTPS_SERVER . 'index.php?route=extension/module&token=' . $this->session->data['token'],
 			'separator' => ' :: '
 		);
 		
 		$this->data['breadcrumbs'][] = array(
 			'text'      => $this->language->get('heading_title'),
-			'href'      => $this->url->link('module/needlessimage', 'token=' . $this->session->data['token'], 'SSL'),
+       		'href'      => HTTPS_SERVER . 'index.php?route=module/needlessimage&token=' . $this->session->data['token'],
 			'separator' => ' :: '
 		);
 		
-		$this->data['action'] = $this->url->link('module/needlessimage', 'token=' . $this->session->data['token'], 'SSL');
-		$this->data['action_delete'] = $this->url->link('module/needlessimage/delete', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['action'] = HTTPS_SERVER . 'index.php?route=module/needlessimage&token=' . $this->session->data['token'];
+		$this->data['action_delete'] = HTTPS_SERVER . 'index.php?route=module/needlessimage/delete&token=' . $this->session->data['token'];
 		
-		$this->data['cancel'] = $this->url->link('extension/module', 'token=' . $this->session->data['token'], 'SSL');
+		$this->data['cancel'] = HTTPS_SERVER . 'index.php?route=extension/module&token=' . $this->session->data['token'];
 		
 		$this->data['directories'] = $this->model_module_needlessimage->getDirectoriesDb();
 		$this->data['directories_fs'] = $this->model_module_needlessimage->getDirectoriesFs();
@@ -98,7 +98,8 @@ class ControllerModuleNeedlessimage extends Controller {
 			'common/footer'
 		);
 		
-		$this->response->setOutput($this->render());
+		$this->response->setOutput($this->render(TRUE), $this->config->get('config_compression'));
+
 	}
 	
 	public function analyze() {
