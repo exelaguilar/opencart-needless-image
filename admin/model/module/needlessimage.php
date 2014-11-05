@@ -1,16 +1,13 @@
 <?php
 class ModelModuleNeedlessimage extends Model {
 	var $tables_to_check = array(
-		'banner_image' => 'image',
 		'category' => 'image',
 		'download' => 'filename',
 		'manufacturer' => 'image',
-		'option_value' => 'image',
 		'order_download' => 'filename',
 		'product' => 'image',
 		'product_image' => 'image',
 		'setting' => 'value',
-		'voucher_theme' => 'image',
 	);
 	
 	public function getImagesDb() {
@@ -42,7 +39,7 @@ class ModelModuleNeedlessimage extends Model {
 			foreach ($files as $file) {
 				$sizes = getimagesize($file);
 				if (preg_match('/^image\/.*$/', $sizes['mime'])) {
-					$images[] = utf8_substr($file, strlen(DIR_IMAGE));
+					$images[] = substr($file, strlen(DIR_IMAGE));
 				}
 			}
 		}
@@ -93,7 +90,7 @@ class ModelModuleNeedlessimage extends Model {
 		
 		if ($dirs) {
 			foreach ($dirs as $dir) {
-				$dir = utf8_substr($dir, strlen(DIR_IMAGE));
+				$dir = substr($dir, strlen(DIR_IMAGE));
 				if ($dir && $recursive) { 
 					$children = $this->getDirectoriesFs($dir);
 					
