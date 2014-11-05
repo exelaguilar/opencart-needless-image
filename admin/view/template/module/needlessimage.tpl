@@ -11,7 +11,7 @@
 	<div class="box">
 		<div class="heading">
 			<h1><img src="view/image/module.png" alt="" /> <?php echo $heading_title; ?></h1>
-			<div class="buttons"><a onclick="$('#form').submit();" class="button"><?php echo $button_save; ?></a><a onclick="location = '<?php echo $cancel; ?>';" class="button"><?php echo $button_cancel; ?></a></div>
+			<div class="buttons"><a onclick="$('#form').submit();" class="button"><span><?php echo $button_save; ?></span></a><a onclick="location = '<?php echo $cancel; ?>';" class="button"><span><?php echo $button_cancel; ?></span></a></div>
 		</div>
 		<div class="content">
 			<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
@@ -50,7 +50,7 @@
 					<tfoot>
 						<tr>
 							<td colspan="2"></td>
-							<td class="left"><a onclick="addDirectory();" class="button"><?php echo $button_add_dir; ?></a></td>
+							<td class="left"><a onclick="addDirectory();" class="button"><span><?php echo $button_add_dir; ?></span></a></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -59,7 +59,7 @@
 				<tfoot>
 					<tr>
 						<td class="center">
-							<a onclick="analyze();" class="button" style="font-size:1.3em;"><?php echo $button_analyze; ?></a>
+							<a onclick="analyze();" class="button" style="font-size:1.3em;"><span><?php echo $button_analyze; ?></span></a>
 						</td>
 					</tr>
 				</tfoot>
@@ -90,7 +90,7 @@ function addDirectory() {
 	html += '			</select>';
 	html += '		</td>';
 	html += '		<td class="left">';
-	html += '			<a onclick="$(\'#directory-row' + directory_row + '\').remove();" class="button"><?php echo $button_remove; ?></a>';
+	html += '			<a onclick="$(\'#directory-row' + directory_row + '\').remove();" class="button"><span><?php echo $button_remove; ?></span></a>';
 	html += '		</td>';
 	html += '	</tr>';
 	html += '</tbody>';
@@ -110,7 +110,7 @@ function analyze() {
 	$("#form select[name*='[path]']").each(function(index){
 		html += '<thead id="analyze-head-' + index + '"' + ($(this).val() == '' ? ' style="display:none;"' : '') + '>';
 		html += '	<tr>';
-		html += '		<td class="left">' + $(this).val() + ($("#form select[name*='[" + index + "][recursive]']").val() == 1 ? ' <span style="font-weight:normal;">(+ <?php echo utf8_strtolower($entry_recursive); ?>)</span>' : '') + '</td>';
+		html += '		<td class="left">' + $(this).val() + ($("#form select[name*='[" + index + "][recursive]']").val() == 1 ? ' <span style="font-weight:normal;">(+ <?php echo strtolower($entry_recursive); ?>)</span>' : '') + '</td>';
 		html += '	</tr>';
 		html += '</thead>';
 		html += '<tbody id="analyze-body-' + index + '"' + ($(this).val() == '' ? ' style="display:none;"' : '') + '>';
@@ -213,7 +213,7 @@ function prepareCheckboxesForm(data, index, message) {
 	output += prepareCheckboxesList(data);
 	output += '	</div>';
 	output += '	<div class="right">';
-	output += '		<a onclick="deleteFiles(' + index + ');" class="button"><?php echo $button_delete_selected; ?></a> <a onclick="selectAll(\'#form-delete-' + index + '\');" class="button" style="background-color: #fff; color: #000; border: 1px solid #ddd; font-weight: bold;"><?php echo $button_select_all; ?></a> <a onclick="unselectAll(\'#form-delete-' + index + '\');" class="button" style="background-color: #fff; color: #000; border: 1px solid #ddd; font-weight: bold;"><?php echo $button_unselect_all; ?></a>';
+	output += '		<a onclick="deleteFiles(' + index + ');" class="button"><span><?php echo $button_delete_selected; ?></span></a> <a onclick="selectAll(\'#form-delete-' + index + '\');" class="button" style="background-color: #fff; color: #000; border: 1px solid #ddd; font-weight: bold;"><span><?php echo $button_select_all; ?></span></a> <a onclick="unselectAll(\'#form-delete-' + index + '\');" class="button" style="background-color: #fff; color: #000; border: 1px solid #ddd; font-weight: bold;"><span><?php echo $button_unselect_all; ?></span></a>';
 	output += '	</div>';
 	output += '</form>';
 	
